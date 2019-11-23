@@ -16,4 +16,4 @@ Docker
 
 Ansible
 
-- Configure ELastic Search
+- Configure Elastic Search
