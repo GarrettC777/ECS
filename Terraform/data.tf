@@ -23,3 +23,4 @@ data "template_file" "ecs-cluster" {
     ecs_cluster = "${aws_ecs_cluster.demo.name}"
   }
 }
+ 
