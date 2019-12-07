@@ -15,6 +15,7 @@ There are also the included configuration files, web pages, and javascript for t
 ## The Docker instructions go as is:
 
 FROM ubuntu:latest
+
 MAINTAINER Artur Tarverdyan
 
 RUN apt-get update -y
