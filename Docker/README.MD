@@ -4,20 +4,20 @@ This is where the Dockerfile that determines what is installed in our servers is
 
 The Docker instructions go as is:
 
-FROM ubuntu:latest
-MAINTAINER Artur Tarverdyan
+- FROM ubuntu:latest
+- MAINTAINER Artur Tarverdyan
 
--RUN apt-get update -y
+- RUN apt-get update -y
 
--RUN apt-get upgrade -y
+- RUN apt-get upgrade -y
 
--RUN apt-get install -y nano git curl zip
+- RUN apt-get install -y nano git curl zip
 
--RUN apt-get install -y apache2
+- RUN apt-get install -y apache2
 
--RUN apache2 -v
+- RUN apache2 -v
 
-RUN service apache2 start
+- RUN service apache2 start
 
 RUN apt-get install -y mysql-client
 
