@@ -1,8 +1,13 @@
 # Docker
 
 This is where the Dockerfile that determines what is installed in our servers is located.
+There are also the included configuration files, web pages, and javascript for the website.
 
-The Docker instructions go as is:
+  Config Files
+    - dir.conf
+
+
+## The Docker instructions go as is:
 
 FROM ubuntu:latest
 MAINTAINER Artur Tarverdyan
