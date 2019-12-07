@@ -4,8 +4,13 @@ This is where the Dockerfile that determines what is installed in our servers is
 There are also the included configuration files, web pages, and javascript for the website.
 
   Config Files
-    - dir.conf
-
+  - dir.conf
+  - servername.conf
+  
+  Website Files
+  - Index.html
+  - Script.js
+  - Style.css
 
 ## The Docker instructions go as is:
 
