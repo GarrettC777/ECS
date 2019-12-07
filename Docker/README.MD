@@ -4,55 +4,40 @@ This is where the Dockerfile that determines what is installed in our servers is
 
 The Docker instructions go as is:
 
-- FROM ubuntu:latest
-- MAINTAINER Artur Tarverdyan
+FROM ubuntu:latest
+MAINTAINER Artur Tarverdyan
 
-- RUN apt-get update -y
+RUN apt-get update -y
 
-- RUN apt-get upgrade -y
+RUN apt-get upgrade -y
 
-- RUN apt-get install -y nano git curl zip
+RUN apt-get install -y nano git curl zip
 
-- RUN apt-get install -y apache2
+RUN apt-get install -y apache2
 
-- RUN apache2 -v
+RUN apache2 -v
 
-- RUN service apache2 start
+RUN apt-get install -y mysql-client
 
-- RUN apt-get install -y mysql-client
+RUN dpkg --get-selections | grep mysql
 
-- RUN dpkg --get-selections | grep mysql
+ENV DEBIAN_FRONTEND noninteractive
 
-- ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get install -y php libapache2-mod-php php-mysql php7.2-cli php7.2-curl php7.2-gd php7.2-mbstring php7.2-mysql php7.2-xml
 
-- ENV DEDCONF_NONINTERACTIVE_SEEN true
+COPY servername.conf /etc/apache2/conf-available/
 
-- RUN apt-get install -y php libapache2-mod-php php-mysql php7.2-cli php7.2-curl php7.2-gd php7.2-mbstring php7.2-mysql php7.2-xml
+RUN a2enconf servername
 
-- RUN rm /etc/apache2/mods-enabled/dir.conf
+COPY dir.conf /etc/apache2/mods-enabled/
 
-- COPY dir.conf /etc/apache2/mods-enabled/
+COPY index.html /var/www/html/
 
-- RUN git clone https://github.com/csuntechlab/affinity.git /var/www/html/affinity
+COPY style.css /var/www/html/
 
-- RUN su chown -hR www-data:www-data /var/www/html/affinity/
+COPY script.js /var/www/html/
 
-- RUN ln -s /var/www/html/affinity/public /var/www/html/public
+RUN service apache2 restart
 
-- RUN rm /etc/apache2/apache2.conf
-
-- COPY apache2.conf /etc/apache2/
-
-- RUN rm /etc/apache2/sites-available/000-default.conf
-
-- COPY 000-default.conf /etc/apache2/sites-available/
-
-- RUN service apache2 restart
-
-- RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-- #RUN composer install /var/www/html/affinity
-
-- EXPOSE 80
-
+EXPOSE 80
 
