@@ -15,7 +15,6 @@ There are also the included configuration files, web pages, and javascript for t
 ## The Docker instructions go as is:
 
 FROM ubuntu:latest
-
 MAINTAINER Artur Tarverdyan
 
 RUN apt-get update -y
@@ -42,15 +41,24 @@ RUN a2enconf servername
 
 COPY dir.conf /etc/apache2/mods-enabled/
 
-COPY index.html /var/www/html/
+RUN git clone https://github.com/csuntechlab/affinity.git /var/www/html/affinity
 
-COPY style.css /var/www/html/
+RUN su chown -hR www-data:www-data /var/www/html/affinity/
 
-COPY script.js /var/www/html/
+RUN ln -s /var/www/html/affinity/public /var/www/html/public
+
+COPY apache2.conf /etc/apache2/
+
+COPY 000-default.conf /etc/apache2/sites-available/
+
+RUN service apache2 restart
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN composer install /var/www/html/affinity
 
 RUN service apache2 restart
 
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
 
 EXPOSE 80
-
