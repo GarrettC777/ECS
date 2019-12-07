@@ -49,5 +49,7 @@ COPY script.js /var/www/html/
 
 RUN service apache2 restart
 
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+
 EXPOSE 80
 
