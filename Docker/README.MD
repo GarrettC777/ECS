@@ -6,11 +6,8 @@ There are also the included configuration files, web pages, and javascript for t
   Config Files
   - dir.conf
   - servername.conf
-  
-  Website Files
-  - Index.html
-  - Script.js
-  - Style.css
+  - 000-default.conf
+  - apache2.conf
 
 ## The Docker instructions go as is:
 
