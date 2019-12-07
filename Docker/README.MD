@@ -4,8 +4,8 @@ This is where the Dockerfile that determines what is installed in our servers is
 
 The Docker instructions go as is:
 
--FROM ubuntu:latest
--MAINTAINER Artur Tarverdyan
+FROM ubuntu:latest
+MAINTAINER Artur Tarverdyan
 
 -RUN apt-get update -y
 
