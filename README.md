@@ -12,7 +12,7 @@ Terraform
 
 Docker
 
-- Create LAMP Stack w/ Affinity
+- Create LAMP Stack with Website
 
 Ansible
 
