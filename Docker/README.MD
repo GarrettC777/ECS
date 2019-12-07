@@ -19,40 +19,40 @@ The Docker instructions go as is:
 
 - RUN service apache2 start
 
-RUN apt-get install -y mysql-client
+- RUN apt-get install -y mysql-client
 
-RUN dpkg --get-selections | grep mysql
+- RUN dpkg --get-selections | grep mysql
 
-ENV DEBIAN_FRONTEND noninteractive
+- ENV DEBIAN_FRONTEND noninteractive
 
-ENV DEDCONF_NONINTERACTIVE_SEEN true
+- ENV DEDCONF_NONINTERACTIVE_SEEN true
 
-RUN apt-get install -y php libapache2-mod-php php-mysql php7.2-cli php7.2-curl php7.2-gd php7.2-mbstring php7.2-mysql php7.2-xml
+- RUN apt-get install -y php libapache2-mod-php php-mysql php7.2-cli php7.2-curl php7.2-gd php7.2-mbstring php7.2-mysql php7.2-xml
 
-RUN rm /etc/apache2/mods-enabled/dir.conf
+- RUN rm /etc/apache2/mods-enabled/dir.conf
 
-COPY dir.conf /etc/apache2/mods-enabled/
+- COPY dir.conf /etc/apache2/mods-enabled/
 
-RUN git clone https://github.com/csuntechlab/affinity.git /var/www/html/affinity
+- RUN git clone https://github.com/csuntechlab/affinity.git /var/www/html/affinity
 
-RUN su chown -hR www-data:www-data /var/www/html/affinity/
+- RUN su chown -hR www-data:www-data /var/www/html/affinity/
 
-RUN ln -s /var/www/html/affinity/public /var/www/html/public
+- RUN ln -s /var/www/html/affinity/public /var/www/html/public
 
-RUN rm /etc/apache2/apache2.conf
+- RUN rm /etc/apache2/apache2.conf
 
-COPY apache2.conf /etc/apache2/
+- COPY apache2.conf /etc/apache2/
 
-RUN rm /etc/apache2/sites-available/000-default.conf
+- RUN rm /etc/apache2/sites-available/000-default.conf
 
-COPY 000-default.conf /etc/apache2/sites-available/
+- COPY 000-default.conf /etc/apache2/sites-available/
 
-RUN service apache2 restart
+- RUN service apache2 restart
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+- RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-#RUN composer install /var/www/html/affinity
+- #RUN composer install /var/www/html/affinity
 
-EXPOSE 80
+- EXPOSE 80
 
 
